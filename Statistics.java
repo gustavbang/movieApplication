@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Statistics {
-    ArrayList<Movies> movieArray = new ArrayList<Movies>();
+    ArrayList<Movies> personalMovieArray = new ArrayList<Movies>();
     ArrayList<String> timeStamp = new ArrayList<String>();
 
 

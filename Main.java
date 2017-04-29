@@ -6,5 +6,7 @@ public class Main {
         CPU cpu = new CPU();
 
         cpu.loginMenu();
+        cpu.loginMenu();
+        cpu.loginMenu();
     }
 }

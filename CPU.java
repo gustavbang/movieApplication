@@ -3,8 +3,13 @@ import java.io.*;
 
 public class CPU {
 
+        File f1 = new File("login.txt");
+        File f2 = new File("movies.txt");
+
+        MovieDB moviedb = new MovieDB();
         ArrayList<Account> accountArray = new ArrayList<Account>();
         Scanner scan = new Scanner(System.in);
+
 
         public void loginMenu() {
              boolean loop = true;
@@ -19,6 +24,7 @@ public class CPU {
                  switch (input) {
                      case 1:
                      signIn();
+                     loop = false;
                      break;
 
                      case 2:
@@ -31,26 +37,42 @@ public class CPU {
                  }
              }
         }
-       
+
         public void signUp() {
-            Scanner scan = new Scanner(System.in);
-            System.out.println("Creating new account");
-            System.out.println(" ");
-            System.out.print(" Enter full name: ");
-            String input1 = scan.nextLine();
-            System.out.print("Enter email: ");
-            String input2 = scan.next();
-            System.out.print("Enter password: ");
-            String input3 = scan.next();
-            accountArray.add(new Account(input1, input2, input3, true, new Statistics()));
-            System.out.println("");
-            Timer.delayFunction();
-            System.out.println("grats chum, u now have an account eh");
-            System.out.println("");
+            try{
+                Scanner scan1 = new Scanner(f1);
+                PrintStream file1 = new PrintStream(f1);
+                Scanner scan = new Scanner(System.in);
+                while(scan1.hasNext()){
+                    accountArray.add(new Account(scan1.next(), scan1.next(), scan1.next(), false, new Statistics()));
+                }
+                System.out.println("Creating new account");
+                System.out.println(" ");
+                System.out.print("Enter username: ");
+                String input1 = scan.next();
+                System.out.print("Enter email: ");
+                String input2 = scan.next();
+                System.out.print("Enter password: ");
+                String input3 = scan.next();
+                accountArray.add(new Account(input1, input2, input3, true, new Statistics()));
+
+                for(int i=0; i<accountArray.size(); i++){
+                    file1.println(accountArray.get(i));           
+                }
+                System.out.println("");
+                Timer.delayFunction();
+                System.out.println("grats chum, u now have an account eh");
+                System.out.println("");
+            } catch(Exception e){
+                System.out.print(e);
+
+            }
+
         }
 
         public void signIn() {
             Scanner scan = new Scanner(System.in);
+            Scanner scan1 = new Scanner("login.txt");
             boolean loop = true;
             System.out.println("Signing in comrade");
             System.out.println(" ");
@@ -62,15 +84,21 @@ public class CPU {
                 String input2 = scan.next();
                 System.out.println(" ");
 
-                for (int i = 0; i<accountArray.size(); i++) {
-                    if(input1.equals(accountArray.get(i).getEmail()) && input2.equals(accountArray.get(i).getPassword())) {
-                        Timer.delayFunction();
-                        System.out.println("Signing in... /n SUCCESS");
-                        System.out.println(" ");
-                        accountArray.get(i).setSignedInTrue();
-                        mainMenu();
-                        loop = false;
-                    }
+                while(scan1.hasNext()){
+                    // først tjekker vi om det der står i teksfilen stemmer overens med brugeren input.
+                    // derefter finder vi nu den bestemte plads i arrayet for at kunne få emailen og passwordet og til sidst sammenligne.
+                        if(scan1.next().equals(input1) && scan1.next().equals(input2)){
+                            for(int i=0; i<accountArray.size(); i++){
+                                if(accountArray.get(i).getEmail().equals(input1) && accountArray.get(i).getPassword().equals(input2)) {
+                                    Timer.delayFunction();
+                                    System.out.println("Signing in... /n SUCCESS");
+                                    System.out.println(" ");
+                                    accountArray.get(i).setSignedInTrue();
+                                    mainMenu();
+                                    loop = false;
+                                }
+                            }
+                        }
                 }
 
                 if (loop) {
@@ -103,6 +131,48 @@ public class CPU {
                  int input = scan.nextInt();
                  switch (input) {
                      case 1:
+                     watchMovies();
+                     break;
+
+                     case 2:
+                     //updateMovies();
+                     break;
+
+                     case 3:
+                     //addMovies();
+                     break;
+
+                     case 4:
+                     //removeMovies();
+                     break;
+
+                     case 5:
+                     
+                     break;
+
+                     default:
+                     System.out.println("Wrong Choice, please try again");
+                     break;
+                 }
+             }
+        }
+
+
+        public void watchMovies() {
+            boolean loop = true;
+            Timer.delayFunction();
+            System.out.println("Here is the top 5 favorites of Netflix n' Chill'");
+            moviedb.getTop5();
+            System.out.println("Press the number of the desired movie, or press s to search for another movie");
+            while (loop) {
+                System.out.println("1. batman");
+                System.out.println("2. mr beans ferie");
+                System.out.println("3. yolomonster");
+                System.out.println("3. tom og jerry THE MOVIE");
+                System.out.println("3. luiz gustavos liv");
+                int input = scan.nextInt();
+                 switch (input) {
+                     case 1:
                      
                      break;
 
@@ -126,7 +196,7 @@ public class CPU {
                      System.out.println("Wrong Choice, please try again");
                      break;
                  }
-             }
+            }
         }
 
 //         public void createAccount() {
