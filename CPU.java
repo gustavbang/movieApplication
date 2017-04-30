@@ -8,13 +8,22 @@ public class CPU {
 
         MovieDB moviedb = new MovieDB();
         ArrayList<Account> accountArray = new ArrayList<Account>();
-        Scanner scan = new Scanner(System.in);
-
+        
+        public void startUpArray(){
+            try{
+                Scanner scan = new Scanner(f1);
+                while(scan.hasNext()){
+                    accountArray.add(new Account(scan.next(), scan.next(), false, new Statistics()));
+                }
+            } catch(Exception lulz){
+                System.out.println(lulz);
+            }
+        }
 
         public void loginMenu() {
              boolean loop = true;
-
-             while (loop) {
+             Scanner scan = new Scanner(System.in);
+             while (loop == true) {
                  System.out.println("");
                  System.out.println("Oi mate, Welcome to Netflix n' Chill, lay back and enjoy");
                  Timer.delayFunction();
@@ -23,11 +32,12 @@ public class CPU {
                  int input = scan.nextInt();
                  switch (input) {
                      case 1:
+
                      signIn();
-                     loop = false;
                      break;
 
                      case 2:
+
                      signUp();
                      break;
 
@@ -40,22 +50,15 @@ public class CPU {
 
         public void signUp() {
             try{
-                Scanner scan1 = new Scanner(f1);
                 PrintStream file1 = new PrintStream(f1);
                 Scanner scan = new Scanner(System.in);
-                while(scan1.hasNext()){
-                    accountArray.add(new Account(scan1.next(), scan1.next(), scan1.next(), false, new Statistics()));
-                }
                 System.out.println("Creating new account");
                 System.out.println(" ");
-                System.out.print("Enter username: ");
-                String input1 = scan.next();
                 System.out.print("Enter email: ");
-                String input2 = scan.next();
+                String input1 = scan.next();
                 System.out.print("Enter password: ");
-                String input3 = scan.next();
-                accountArray.add(new Account(input1, input2, input3, true, new Statistics()));
-
+                String input2 = scan.next();
+                accountArray.add(new Account(input1, input2, true, new Statistics()));
                 for(int i=0; i<accountArray.size(); i++){
                     file1.println(accountArray.get(i));           
                 }
@@ -77,17 +80,17 @@ public class CPU {
             System.out.println("Signing in comrade");
             System.out.println(" ");
 
-            while (loop) {
+            while (loop = true) {
                 System.out.print("Enter email: ");
                 String input1 = scan.next();
                 System.out.print("Enter password: ");
                 String input2 = scan.next();
                 System.out.println(" ");
 
-                while(scan1.hasNext()){
+               // while(scan1.hasNext()){
                     // først tjekker vi om det der står i teksfilen stemmer overens med brugeren input.
                     // derefter finder vi nu den bestemte plads i arrayet for at kunne få emailen og passwordet og til sidst sammenligne.
-                        if(scan1.next().equals(input1) && scan1.next().equals(input2)){
+                        //if(scan1.next().equals(input1) && scan1.next().equals(input2)){
                             for(int i=0; i<accountArray.size(); i++){
                                 if(accountArray.get(i).getEmail().equals(input1) && accountArray.get(i).getPassword().equals(input2)) {
                                     Timer.delayFunction();
@@ -98,14 +101,16 @@ public class CPU {
                                     loop = false;
                                 }
                             }
-                        }
-                }
+                        //}
+               // }
 
-                if (loop) {
+                if (loop == true) {
                     Timer.delayFunction();
-                    System.out.println("WROONG, try again");
+                    System.out.println("WROONG, try again nub");
                     System.out.println(" ");
-                    System.out.println("Press r to return to main menu or try again");
+                    System.out.println("Don't have an account?");
+                    System.out.println(" ");
+                    System.out.println("Press r to sign up or random key to try again");
                     String choice = scan.next();
                     System.out.println(" ");
 
@@ -119,7 +124,7 @@ public class CPU {
 
         public void mainMenu() {
            boolean loop = true;
-           Timer.delayFunction();
+           Scanner scan = new Scanner(System.in);
            System.out.println("Welcome to Main Menu, choose an option to proceed");
             while (loop) {
                  Timer.delayFunction();
@@ -160,16 +165,18 @@ public class CPU {
 
         public void watchMovies() {
             boolean loop = true;
+            Scanner scan = new Scanner(System.in);
             Timer.delayFunction();
             System.out.println("Here is the top 5 favorites of Netflix n' Chill'");
             moviedb.getTop5();
+            Timer.delayFunction();
             System.out.println("Press the number of the desired movie, or press s to search for another movie");
             while (loop) {
                 System.out.println("1. batman");
                 System.out.println("2. mr beans ferie");
                 System.out.println("3. yolomonster");
-                System.out.println("3. tom og jerry THE MOVIE");
-                System.out.println("3. luiz gustavos liv");
+                System.out.println("4. tom og jerry THE MOVIE");
+                System.out.println("5. luiz gustavos liv");
                 int input = scan.nextInt();
                  switch (input) {
                      case 1:

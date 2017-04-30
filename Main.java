@@ -5,8 +5,7 @@ public class Main {
     public static void main(String[] args) {
         CPU cpu = new CPU();
 
-        cpu.loginMenu();
-        cpu.loginMenu();
+        cpu.startUpArray();
         cpu.loginMenu();
     }
 }

@@ -1,24 +1,14 @@
 public class Account {
-    private String username;
     private String email;
     private String password;
     private boolean signedIn = false;
     private Statistics statistics;
 
-    public Account (String username, String email, String password, boolean signedIn, Statistics statistics) {
-        this.username = username;
+    public Account (String email, String password, boolean signedIn, Statistics statistics) {
         this.email = email;
         this.password = password;
         this.signedIn = signedIn;
         this.statistics = statistics;
-    }
-
-    public String getName() {
-        return username;
-    }
-
-    public void setName(String name) {
-        this.username = name;
     }
 
     public String getEmail() {
@@ -38,11 +28,15 @@ public class Account {
     }
 
     public void setSignedInTrue() {
-        signedIn = true;
+        this.signedIn = true;
+    }
+
+    public void setSignedInFalse(){
+        this.signedIn = false;
     }
 
     public String toString(){
-        return "" + this.username + " " + this.email + " " + this. password;
+        return "" + this.email + " " + this. password;
     }
 
 
