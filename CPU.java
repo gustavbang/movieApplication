@@ -3,15 +3,15 @@ import java.io.*;
 
 public class CPU {
 
-        File f1 = new File("login.txt");
-        File f2 = new File("movies.txt");
+        File loginFile = new File("login.txt");
 
         MovieDB moviedb = new MovieDB();
         ArrayList<Account> accountArray = new ArrayList<Account>();
         
         public void startUpArray(){
             try{
-                Scanner scan = new Scanner(f1);
+                moviedb.startUpMovieArray();
+                Scanner scan = new Scanner(loginFile);
                 while(scan.hasNext()){
                     accountArray.add(new Account(scan.next(), scan.next(), false, new Statistics()));
                 }
@@ -32,13 +32,15 @@ public class CPU {
                  int input = scan.nextInt();
                  switch (input) {
                      case 1:
-
                      signIn();
+                     mainMenu();
+                     loop = false;
                      break;
 
                      case 2:
-
                      signUp();
+                     mainMenu();
+                     loop = false;
                      break;
 
                      default:
@@ -50,7 +52,7 @@ public class CPU {
 
         public void signUp() {
             try{
-                PrintStream file1 = new PrintStream(f1);
+                PrintStream file1 = new PrintStream(loginFile);
                 Scanner scan = new Scanner(System.in);
                 System.out.println("Creating new account");
                 System.out.println(" ");
@@ -80,7 +82,7 @@ public class CPU {
             System.out.println("Signing in comrade");
             System.out.println(" ");
 
-            while (loop = true) {
+            while (loop == true) {
                 System.out.print("Enter email: ");
                 String input1 = scan.next();
                 System.out.print("Enter password: ");
@@ -97,7 +99,6 @@ public class CPU {
                                     System.out.println("Signing in... /n SUCCESS");
                                     System.out.println(" ");
                                     accountArray.get(i).setSignedInTrue();
-                                    mainMenu();
                                     loop = false;
                                 }
                             }
@@ -126,7 +127,7 @@ public class CPU {
            boolean loop = true;
            Scanner scan = new Scanner(System.in);
            System.out.println("Welcome to Main Menu, choose an option to proceed");
-            while (loop) {
+            while (loop == true) {
                  Timer.delayFunction();
                  System.out.println("1. Watch Movies");
                  System.out.println("2. Update Movies");
@@ -136,7 +137,8 @@ public class CPU {
                  int input = scan.nextInt();
                  switch (input) {
                      case 1:
-                     watchMovies();
+                     moviedb.watchMovies();
+                     System.out.println("Returning to main menu...");
                      break;
 
                      case 2:
@@ -161,51 +163,6 @@ public class CPU {
                  }
              }
         }
-
-
-        public void watchMovies() {
-            boolean loop = true;
-            Scanner scan = new Scanner(System.in);
-            Timer.delayFunction();
-            System.out.println("Here is the top 5 favorites of Netflix n' Chill'");
-            moviedb.getTop5();
-            Timer.delayFunction();
-            System.out.println("Press the number of the desired movie, or press s to search for another movie");
-            while (loop) {
-                System.out.println("1. batman");
-                System.out.println("2. mr beans ferie");
-                System.out.println("3. yolomonster");
-                System.out.println("4. tom og jerry THE MOVIE");
-                System.out.println("5. luiz gustavos liv");
-                int input = scan.nextInt();
-                 switch (input) {
-                     case 1:
-                     
-                     break;
-
-                     case 2:
-                     
-                     break;
-
-                     case 3:
-                     
-                     break;
-
-                     case 4:
-                     
-                     break;
-
-                     case 5:
-                     
-                     break;
-
-                     default:
-                     System.out.println("Wrong Choice, please try again");
-                     break;
-                 }
-            }
-        }
-
 //         public void createAccount() {
 
 //         }
