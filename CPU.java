@@ -96,7 +96,7 @@ public class CPU {
                             for(int i=0; i<accountArray.size(); i++){
                                 if(accountArray.get(i).getEmail().equals(input1) && accountArray.get(i).getPassword().equals(input2)) {
                                     Timer.delayFunction();
-                                    System.out.println("Signing in... /n SUCCESS");
+                                    System.out.println("Signing in... SUCCESS");
                                     System.out.println(" ");
                                     accountArray.get(i).setSignedInTrue();
                                     loop = false;
@@ -134,6 +134,7 @@ public class CPU {
                  System.out.println("3. Add Movies");
                  System.out.println("4. Remove Movies");
                  System.out.println("5. Watch personal Statistics");
+                 System.out.println("6. Sign out");
                  int input = scan.nextInt();
                  switch (input) {
                      case 1:
@@ -142,19 +143,27 @@ public class CPU {
                      break;
 
                      case 2:
-                     //updateMovies();
+                     moviedb.updateMovies();
+                     System.out.println("Returning to main menu...");
                      break;
 
                      case 3:
-                     //addMovies();
+                     moviedb.addMovies();
+                     System.out.println("Returning to main menu...");
                      break;
 
                      case 4:
-                     //removeMovies();
+                     moviedb.removeMovies();
+                     System.out.println("Returning to main menu...");
                      break;
 
                      case 5:
-                     
+                     break;
+
+                     case 6:
+                     System.out.println("Thanks for chilling with us at Netflix n' Chill. Stay safe");
+                     moviedb.updateMovieFile();
+                     loop = false;
                      break;
 
                      default:
@@ -163,20 +172,4 @@ public class CPU {
                  }
              }
         }
-//         public void createAccount() {
-
-//         }
-
-//         public void readAccount() {
-
-//         }
-
-//         public void updateAccount() {
-
-//         }
-
-//         public void deleteAccount() {
-            
-//         }
-//     }
 }

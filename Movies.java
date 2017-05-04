@@ -26,7 +26,35 @@ public class Movies {
         return this.movieName;
     }
 
+    public int getProductionYear(){
+        return this.productionYear;
+    }
+
+    public String getMaleLead(){
+        return this.maleLead;
+    }
+
+    public String getFemaleLead(){
+        return this.femaleLead;
+    }
+
+    public void setMovieName(String movieName){
+        this.movieName = movieName;
+    }
+
+    public void setProductionYear(int productionYear){
+        this.productionYear = productionYear;
+    }
+
+    public void setMaleLead(String maleLead){
+        this.maleLead = maleLead;
+    }
+
+    public void setFemaleLead(String femaleLead){
+        this.femaleLead = femaleLead;
+    }
+
     public String toString(){
-        return "You're now watching " + movieName + " produced in " + productionYear + " with " + maleLead + " and " + femaleLead + ". Enjoy!";
+        return "" + movieName + " " +  productionYear + " " + maleLead + " " + femaleLead + " " + watchCount;
     }
 }

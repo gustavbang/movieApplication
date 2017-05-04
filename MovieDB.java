@@ -3,7 +3,7 @@ import java.io.*;
 
 public class MovieDB {
 
-    ArrayList<Movies> allMoviesArray = new ArrayList<Movies>();
+    ArrayList <Movies> allMoviesArray = new ArrayList <Movies>();
     File movieFile = new File("movies.txt");
     private int num1 = 0;
     private int num2 = 0;
@@ -88,11 +88,12 @@ public class MovieDB {
    public void searchMovieArray() {
         try{
             Scanner search = new Scanner(System.in);
-            System.out.println("Type in search: ");
-            String result = search.nextLine();
+            System.out.println("Type in name and an actor of the movie: ");
+            String result = search.next();
+            String result1 = search.next();
             for(int i = 0; i < allMoviesArray.size(); i++){
-                if(allMoviesArray.get(i).toString().contains(result)){
-                    System.out.println(allMoviesArray.get(i));
+                if(allMoviesArray.get(i).toString().contains(result) && allMoviesArray.get(i).toString().contains(result1)){
+                    System.out.println("You're now watching " + allMoviesArray.get(i).getMovieName() + ". Produced in year " + allMoviesArray.get(i).getProductionYear() + " with " + allMoviesArray.get(i).getMaleLead() + " and " + allMoviesArray.get(i).getFemaleLead() + ". Enjoy!");
                     allMoviesArray.get(i).increaseWatchCount();
                 }
             } 
@@ -115,7 +116,7 @@ public class MovieDB {
                 case 1:
                     for(int i=0; i<allMoviesArray.size(); i++){
                         if(allMoviesArray.get(i).getWatchCount() == num1){
-                            System.out.println(allMoviesArray.get(i));
+                            System.out.println("You're now watching " + allMoviesArray.get(i).getMovieName() + ". Produced in year " + allMoviesArray.get(i).getProductionYear() + " with " + allMoviesArray.get(i).getMaleLead() + " and " + allMoviesArray.get(i).getFemaleLead() + ". Enjoy!");
                             allMoviesArray.get(i).increaseWatchCount();
                         }
                     }
@@ -125,7 +126,7 @@ public class MovieDB {
                 case 2:
                     for(int a=0; a<allMoviesArray.size(); a++){
                         if(allMoviesArray.get(a).getWatchCount() == num2){
-                            System.out.println(allMoviesArray.get(a));
+                            System.out.println("You're now watching " + allMoviesArray.get(a).getMovieName() + ". Produced in year " + allMoviesArray.get(a).getProductionYear() + " with " + allMoviesArray.get(a).getMaleLead() + " and " + allMoviesArray.get(a).getFemaleLead() + ". Enjoy!");
                             allMoviesArray.get(a).increaseWatchCount();
                         }
                     }
@@ -135,7 +136,7 @@ public class MovieDB {
                 case 3:
                     for(int b=0; b<allMoviesArray.size(); b++){
                         if(allMoviesArray.get(b).getWatchCount() == num3){
-                            System.out.println(allMoviesArray.get(b));
+                            System.out.println("You're now watching " + allMoviesArray.get(b).getMovieName() + ". Produced in year " + allMoviesArray.get(b).getProductionYear() + " with " + allMoviesArray.get(b).getMaleLead() + " and " + allMoviesArray.get(b).getFemaleLead() + ". Enjoy!");
                             allMoviesArray.get(b).increaseWatchCount();
                         }
                     }
@@ -145,7 +146,7 @@ public class MovieDB {
                 case 4:
                     for(int c=0; c<allMoviesArray.size(); c++){
                         if(allMoviesArray.get(c).getWatchCount() == num4){
-                            System.out.println(allMoviesArray.get(c));
+                            System.out.println("You're now watching " + allMoviesArray.get(c).getMovieName() + ". Produced in year " + allMoviesArray.get(c).getProductionYear() + " with " + allMoviesArray.get(c).getMaleLead() + " and " + allMoviesArray.get(c).getFemaleLead() + ". Enjoy!");
                             allMoviesArray.get(c).increaseWatchCount();
                         }
                     }
@@ -155,7 +156,7 @@ public class MovieDB {
                 case 5:
                     for(int d=0; d<allMoviesArray.size(); d++){
                         if(allMoviesArray.get(d).getWatchCount() == num5){
-                            System.out.println(allMoviesArray.get(d));
+                            System.out.println("You're now watching " + allMoviesArray.get(d).getMovieName() + ". Produced in year " + allMoviesArray.get(d).getProductionYear() + " with " + allMoviesArray.get(d).getMaleLead() + " and " + allMoviesArray.get(d).getFemaleLead() + ". Enjoy!");
                             allMoviesArray.get(d).increaseWatchCount();
                         }
                     }
@@ -172,6 +173,86 @@ public class MovieDB {
                 System.out.println("Wrong Choice, please try again");
                 break;
             }
+        }
+    }
+
+    public void updateMovies(){
+        try{
+            Scanner search = new Scanner(System.in);
+            System.out.println("Type in name and an actor of the movie: ");
+            String result = search.next();
+            String result1 = search.next();
+            for(int i = 0; i < allMoviesArray.size(); i++){
+                if(allMoviesArray.get(i).toString().contains(result) && allMoviesArray.get(i).toString().contains(result1)){
+                    System.out.println("Type in what u want to update the movies name to");
+                    String result2 = search.next();
+                    System.out.println("Type in what u want to update production year to");
+                    int result3 = search.nextInt();
+                    System.out.println("Type in what u want to update male lead to");
+                    String result4 = search.next();
+                    System.out.println("Type in what u want to update female lead to");
+                    String result5 = search.next();
+                    allMoviesArray.get(i).setMovieName(result2);
+                    allMoviesArray.get(i).setProductionYear(result3);
+                    allMoviesArray.get(i).setMaleLead(result4);
+                    allMoviesArray.get(i).setFemaleLead(result5);
+                }
+            } 
+        } catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void addMovies(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Type in the name of the movie");
+        String movieName = scan.next();
+        System.out.println("Type in the production year");
+        int productionYear = scan.nextInt();
+        System.out.println("Type in the male lead (hint: it's Azat)");
+        String maleLead = scan.next();
+        System.out.println("Type in the female lead (Also Azat)");
+        String femaleLead = scan.next();
+        allMoviesArray.add(new Movies(movieName, productionYear, maleLead, femaleLead, 0));
+        System.out.println("");
+        System.out.println("Congrats homeboy, u just added a new movie to the long list of extraordinary movies in the Netflix n' Chill' collection");
+    }
+
+    public void removeMovies(){
+        try{
+            Scanner search = new Scanner(System.in);
+            System.out.println("Type in name and an actor of the movie: ");
+            String result = search.next();
+            String result1 = search.next();
+            for(int i = 0; i < allMoviesArray.size(); i++){
+                if(allMoviesArray.get(i).toString().contains(result) && allMoviesArray.get(i).toString().contains(result1)){
+                    System.out.println("Are you sure u want to remove " + result + " from the movie collection?");
+                    System.out.println("Press y to delete or random key to return to main menu");
+                    String choice = search.next();
+                    if(choice.equals("Y") || choice.equals("y")){
+                        allMoviesArray.remove(i);
+                        System.out.println("Gratz noob, u just removed " + result + " from Netflix n' Chill's awesome movie collection");
+                        num1 = 0;
+                        num2 = 0;
+                        num3 = 0;
+                        num4 = 0;
+                        num5 = 0;
+                    }
+                }
+            } 
+        } catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void updateMovieFile(){
+        try{
+            PrintStream file = new PrintStream(movieFile);
+            for(int i=0; i<allMoviesArray.size(); i++){
+                file.println(allMoviesArray.get(i));           
+            }
+        } catch(Exception e){
+            System.out.println(e);
         }
     }
 }
