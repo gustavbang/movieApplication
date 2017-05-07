@@ -1,7 +1,5 @@
 Azatiator 2000 Azat RusselCrowe 5
-Azatiator 2000 Azat RusselCrowe 10
-Azatiator 2000 Azat RusselCrowe 15
-Azatiator 2000 Azat RusselCrowe 20
-Azatiator 2000 Azat RusselCrowe 26
-FindingAzat 2002 Azat EllenDeGenerous 0
-IngloriousAzat 2008 Azat BradPitt 0
+FindingAzat 2002 Azat EllenDeGenerous 20
+IngloriousAzat 2008 Azat BradPitt 10
+TheGoodTheBadAndAzat 1984 Azat ClintEastwood 15
+TheGreatAzat 2009 Azat LeonardoDiCaprio 100

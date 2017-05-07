@@ -255,4 +255,21 @@ public class MovieDB {
             System.out.println(e);
         }
     }
+
+    public Movies searchAndReturn() {
+        try{
+            Scanner search = new Scanner(System.in);
+            System.out.println("Type in name and an actor of the movie: ");
+            String result = search.next();
+            String result1 = search.next();
+            for(int i = 0; i < allMoviesArray.size(); i++){
+                if(allMoviesArray.get(i).toString().contains(result) && allMoviesArray.get(i).toString().contains(result1)){
+                    return allMoviesArray.get(i);
+                }
+            } 
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        return null;
+    }
 }

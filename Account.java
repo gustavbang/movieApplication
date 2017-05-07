@@ -1,14 +1,15 @@
+import java.util.ArrayList;
+
 public class Account {
     private String email;
     private String password;
     private boolean signedIn = false;
-    private Statistics statistics;
+    ArrayList<Movies> favMoviesArray = new ArrayList<Movies>();
 
-    public Account (String email, String password, boolean signedIn, Statistics statistics) {
+    public Account (String email, String password, boolean signedIn) {
         this.email = email;
         this.password = password;
         this.signedIn = signedIn;
-        this.statistics = statistics;
     }
 
     public String getEmail() {
@@ -35,26 +36,23 @@ public class Account {
         this.signedIn = false;
     }
 
+    public boolean getSignedInTrue() {
+        return this.signedIn;
+    }
+
     public String toString(){
         return "" + this.email + " " + this. password;
     }
 
+    public void addToFavorites(Movies movie) {
+        favMoviesArray.add(movie);
 
+    }
 
+    public void watchFavorites() {
+        for(int i=0; i<favMoviesArray.size(); i++){
+            System.out.println(favMoviesArray.get(i));
+        }
+    }
 
-    // public void createMovie() {
-
-    // }
-
-    // public void readMovie() {
-
-    // }
-
-    // public void updateMovie() {
-
-    // }
-
-    // public void deleteMovie() {
-        
-    // }
 }

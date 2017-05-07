@@ -13,7 +13,7 @@ public class CPU {
                 moviedb.startUpMovieArray();
                 Scanner scan = new Scanner(loginFile);
                 while(scan.hasNext()){
-                    accountArray.add(new Account(scan.next(), scan.next(), false, new Statistics()));
+                    accountArray.add(new Account(scan.next(), scan.next(), false));
                 }
             } catch(Exception lulz){
                 System.out.println(lulz);
@@ -60,9 +60,12 @@ public class CPU {
                 String input1 = scan.next();
                 System.out.print("Enter password: ");
                 String input2 = scan.next();
-                accountArray.add(new Account(input1, input2, true, new Statistics()));
+                accountArray.add(new Account(input1, input2, true));
                 for(int i=0; i<accountArray.size(); i++){
-                    file1.println(accountArray.get(i));           
+                    file1.println(accountArray.get(i)); 
+                    if(accountArray.get(i).getEmail().equals(input1) && accountArray.get(i).getPassword().equals(input2)) {  
+                        accountArray.get(i).setSignedInTrue();     
+                    }   
                 }
                 System.out.println("");
                 Timer.delayFunction();
@@ -133,7 +136,7 @@ public class CPU {
                  System.out.println("2. Update Movies");
                  System.out.println("3. Add Movies");
                  System.out.println("4. Remove Movies");
-                 System.out.println("5. Watch personal Statistics");
+                 System.out.println("5. Add to / watch personal favoritez");
                  System.out.println("6. Sign out");
                  int input = scan.nextInt();
                  switch (input) {
@@ -158,10 +161,17 @@ public class CPU {
                      break;
 
                      case 5:
+                     favoriteMenu();
+                     System.out.println("Returning to main menu...");
                      break;
 
                      case 6:
                      System.out.println("Thanks for chilling with us at Netflix n' Chill. Stay safe");
+                     for( int i=0; i<accountArray.size(); i++){
+                         if(accountArray.get(i).getSignedInTrue() == true){
+                             accountArray.get(i).setSignedInFalse();
+                         }
+                     }
                      moviedb.updateMovieFile();
                      loop = false;
                      break;
@@ -172,4 +182,35 @@ public class CPU {
                  }
              }
         }
+
+        public void favoriteMenu() {
+           boolean loop = true;
+           Scanner scan = new Scanner(System.in);
+           System.out.println("Welcome to your favorites, choose an option to proceed");
+            while (loop == true) {
+                 Timer.delayFunction();
+                 System.out.println("1. Add to personal favorites");
+                 System.out.println("2. Watch personal favorites");
+                 int input = scan.nextInt();
+                 switch (input) {
+                     case 1:
+                     for (int i=0; i<accountArray.size(); i++) {
+                         if (accountArray.get(i).getSignedInTrue() == true) {
+                            accountArray.get(i).addToFavorites(moviedb.searchAndReturn());
+                         }
+                     }
+                     loop = false;
+                     break;
+
+                     case 2:
+                     for (int i=0; i<accountArray.size(); i++) {
+                         if (accountArray.get(i).getSignedInTrue() == true) {
+                            accountArray.get(i).watchFavorites();
+                         }
+                     }
+                     loop = false;
+                     break;
+                 }
+            }
+    }
 }
